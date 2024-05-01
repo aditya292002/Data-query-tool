@@ -1,7 +1,14 @@
 from icecream import ic
 import streamlit as st
+from io import StringIO
+import pandas as pd
+import sqlite3
+
 from utils import *
- 
+
+# constants
+db_name = "new_db.sqlite3"
+
 # Streamlit UI
 # Set page title
 st.set_page_config(page_title="Your Project Name", page_icon="🚀")
@@ -10,27 +17,52 @@ st.set_page_config(page_title="Your Project Name", page_icon="🚀")
 st.sidebar.title("Data Query Tool 🚀")
 
 # Add a logo to the sidebar
-st.sidebar.image("/workspaces/common_bot/swati_stremlit_app/data_query.png", width=200)
+st.sidebar.image("/workspaces/Data-query-tool/data_query.png", width=200)
 
 # Main content of the app
 st.title('Upload CSV and Query Data')
  
-csv_dir = st.text_input('Enter directory path containing CSV files')
-db_name = "new_db.sqlite3"
-if st.button('Load CSV files'):
-    if csv_dir and os.path.isdir(csv_dir):
-        load_csv_to_sqlite(csv_dir, db_name)
-        get_table_structure()
-        st.write("CSV files loaded into SQLite database successfully!")
-    else:
-        st.write("Please provide a valid directory path containing CSV files")
+# csv_dir = st.text_input('Enter directory path containing CSV files')
+
+# if st.button('Load CSV files'):
+    # if csv_dir and os.path.isdir(csv_dir):
+        # load_csv_to_sqlite(csv_dir, db_name)
+        # get_table_structure()
+        # st.write("CSV files loaded into SQLite database successfully!")
+    # else:
+        # st.write("Please provide a valid directory path containing CSV files")
  
  
-# st.subheader("Click the button below once before asking question to load the table infos")
-# if st.button('Prepare to ask question'):
-#     get_table_structure()
-#     st.write("Data prepared to ask question")
- 
+
+
+
+uploaded_file = st.file_uploader("Please choose a file")
+if uploaded_file is not None:
+    table_name = uploaded_file.name.lower().replace(" ", "_")
+    table_name = table_name.replace("-", "_")
+    table_name = table_name.replace(".csv", "")
+
+    bytes_data = uploaded_file.getvalue()
+    # st.write(bytes_data)
+    stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
+    # st.write(stringio)
+    string_data = stringio.read()
+    # st.write(string_data)
+    df = pd.read_csv(uploaded_file)
+
+    # Opening a connection and saving CSV file to DB
+    conn = sqlite3.connect(db_name)
+    cursor = conn.cursor()
+    df.to_sql(table_name, conn, index=False, if_exists='append')
+    conn.commit()
+    conn.close()
+    st.success(f"File '{uploaded_file.name}' uploaded and saved to table '{table_name}' in '{db_name}'.")
+
+st.subheader("Click the button below once before asking question to load the table infos")
+if st.button('Prepare to ask question'):
+    get_table_structure()
+    st.write("Data prepared to ask question")
+
 with st.form("my_form"):
     question = st.text_input("Enter your question")
     submit_button = st.form_submit_button("Submit")

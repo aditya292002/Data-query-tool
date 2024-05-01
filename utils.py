@@ -120,3 +120,4 @@ def process_query(query_input):
 
     # Return the query result
     return result
+

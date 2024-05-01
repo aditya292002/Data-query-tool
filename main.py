@@ -18,9 +18,10 @@ st.sidebar.title("Data Query Tool 🚀")
 
 # Add a logo to the sidebar
 st.sidebar.image("/workspaces/Data-query-tool/data_query.png", width=200)
-
 # Main content of the app
 st.title('Upload CSV and Query Data')
+
+db_name = "your_database_name.db"  # Specify your database name
 
 uploaded_file = st.file_uploader("Please choose a file")
 if uploaded_file is not None:
@@ -28,19 +29,16 @@ if uploaded_file is not None:
     table_name = table_name.replace("-", "_")
     table_name = table_name.replace(".csv", "")
 
-    bytes_data = uploaded_file.getvalue()
-    stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
-    string_data = stringio.read()
-    # st.write(string_data)
+    # Read the uploaded file as a pandas DataFrame
     df = pd.read_csv(uploaded_file)
 
     # Opening a connection and saving CSV file to DB
     conn = sqlite3.connect(db_name)
-    cursor = conn.cursor()
     df.to_sql(table_name, conn, index=False, if_exists='append')
     conn.commit()
     conn.close()
     st.success(f"File '{uploaded_file.name}' uploaded and saved to table '{table_name}' in '{db_name}'.")
+
 
 st.subheader("Click the button below once before asking question to load the table infos")
 if st.button('Prepare to ask question'):

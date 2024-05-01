@@ -21,20 +21,6 @@ st.sidebar.image("/workspaces/Data-query-tool/data_query.png", width=200)
 
 # Main content of the app
 st.title('Upload CSV and Query Data')
- 
-# csv_dir = st.text_input('Enter directory path containing CSV files')
-
-# if st.button('Load CSV files'):
-    # if csv_dir and os.path.isdir(csv_dir):
-        # load_csv_to_sqlite(csv_dir, db_name)
-        # get_table_structure()
-        # st.write("CSV files loaded into SQLite database successfully!")
-    # else:
-        # st.write("Please provide a valid directory path containing CSV files")
- 
- 
-
-
 
 uploaded_file = st.file_uploader("Please choose a file")
 if uploaded_file is not None:
@@ -43,9 +29,7 @@ if uploaded_file is not None:
     table_name = table_name.replace(".csv", "")
 
     bytes_data = uploaded_file.getvalue()
-    # st.write(bytes_data)
     stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
-    # st.write(stringio)
     string_data = stringio.read()
     # st.write(string_data)
     df = pd.read_csv(uploaded_file)

@@ -85,4 +85,10 @@ with st.form("my_form"):
             st.write(query_response)
             result = process_query(query_response)
             st.table(result)
+            reportPrompt = "Write a report in cohesive way explaining for " + "given question" + question + "write an sql query to answer the question from the table " + table_structure[table] + " result obtained is" + str(result)
+            st.write("Start")
+            st.write("report prompt: " + reportPrompt)
+            responseReport = get_gemini_response(reportPrompt) 
+            st.write(responseReport)
+            st.write("Done")
             break

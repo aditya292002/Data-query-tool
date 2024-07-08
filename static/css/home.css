@@ -1,0 +1,40 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    color: #ffffff;
+}
+.video-bg {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -1;
+    filter: brightness(50%);
+}
+.container {
+    margin-top: 50px;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    position: relative;
+    z-index: 1;
+}
+.header-title {
+    font-weight: 500;
+    color: #ffdd57;
+}
+.description {
+    margin-top: 20px;
+    text-align: left;
+}
+.navbar {
+    position: relative;
+    z-index: 1;
+}
+.nav-link.active {
+    color: #ffdd57 !important;
+    font-weight: bold;
+}

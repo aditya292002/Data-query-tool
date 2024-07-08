@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GenAI SOC Analyzer - Home</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+</head>
+<body>
+<video autoplay muted loop class="video-bg">
+    <source src="static/images/istockphoto-1516104731-640_adpp_is.mp4" type="video/mp4">
+    Your browser does not support HTML5 video.
+</video>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">
+        <img src="static/images/soc_logo.png" alt="App Logo" style="height: 60px;">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link {% if request.endpoint == 'home' %}active{% endif %}" href="{{ url_for('home') }}">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {% if request.endpoint == 'index' %}active{% endif %}" href="{{ url_for('index') }}">SOC Analyzer</a>
+            </li>
+        </ul>
+        <span class="navbar-text">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Tata_Consultancy_Services_Logo.svg/512px-Tata_Consultancy_Services_Logo.svg.png?20210617123944" alt="TCS Logo" style="height: 50px;">
+        </span>
+    </div>
+</nav>
+<div class="container text-center">
+    <h1 class="header-title">Welcome to GenAI SOC Analyzer</h1>
+    <div class="description mt-4">
+        <h3>Problem Statement</h3>
+        <p>
+            SOC assistants often struggle to identify and prioritize tasks effectively within the security operations center. Learning and familiarizing with SOC processes and tasks can be time-consuming for new SOC analysts. The complexity of security incidents and varied sources of threat data make it challenging to quickly discern the most critical tasks. SOC analysts may experience delays in task execution due to the need for extensive manual research and decision-making processes. Implementing a NAI-based SOC assistant could significantly streamline task identification and prioritization, providing timely support to SOC analysts in handling security incidents.
+        </p>
+        <h3>Solution</h3>
+        <p>
+            The Gen AI-based SOC assistant offers advanced document correlation, allowing it to correlate information across multiple documents and data sources for comprehensive analysis and response. It utilizes analytical search techniques rather than simple keyword-based searches, enhancing the accuracy and relevance of information retrieval. This assistant helps SOC analysts quickly identify and prioritize tasks based on contextual insights derived from correlated data. By providing relevant information swiftly, it improves response times and reduces manual effort and decision-making time. Additionally, it facilitates faster learning and skill development among SOC analysts by offering structured, data-driven guidance and insights.
+        </p>
+        <h3>Business Benefits</h3>
+        <p>
+            The Gen AI-based SOC assistant streamlines task management and incident response processes, reducing the time and effort required to address security incidents. It provides SOC analysts with comprehensive, correlated insights from multiple sources, enabling more informed and timely decision-making. By quickly identifying relevant information and prioritizing tasks effectively, it accelerates incident response. This optimization of resource allocation reduces operational costs associated with manual task prioritization and incident investigation.
+        </p>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

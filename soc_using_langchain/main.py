@@ -2,7 +2,7 @@ from langchain_openai import AzureOpenAI
 from langchain_experimental.agents import create_csv_agent
 
 llm = AzureOpenAI(
-    openai_api_key="91fa6d3ee64745dea59be9e2e21581f1", 
+    openai_api_key="azure openai api key", 
     deployment_name="gpt-35-turbo-instruct", 
     model_name="azure",
     api_version="2024-02-15-preview", 

@@ -17,5 +17,4 @@ agent.invoke("Was the drop of nasdaq index in 2012 related to the negative senti
 agent.invoke("In 2012, nasdaq index is growing or dropping?")
 
 
-#keys
-#(Key1: 91fa6d3ee64745dea59be9e2e21581f1 & Key2: f312a48c295f4c8c94094581b5ad7ba2
+
